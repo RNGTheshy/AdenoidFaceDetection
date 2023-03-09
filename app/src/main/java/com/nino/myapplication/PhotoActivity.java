@@ -1,6 +1,7 @@
 package com.nino.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -35,7 +36,8 @@ public class PhotoActivity extends AppCompatActivity {
         try {
             // creating bitmap from packaged into app android asset 'image.jpg',
             // app/src/main/assets/image.jpg
-            bitmap = BitmapFactory.decodeStream(getAssets().open("9281.jpg"));
+            final String imagePath = getIntent().getStringExtra("imagePath");
+            bitmap = BitmapFactory.decodeFile(imagePath);
             // loading serialized torchscript module from packaged into app android asset model.pt,
             // app/src/model/assets/model.pt
             module = LiteModuleLoader.load(assetFilePath(this, "mobilenetV3small.ptl"));
